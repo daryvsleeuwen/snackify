@@ -3,7 +3,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { UserDto } from './dto';
+import { SignInDto, UserDto } from './dto';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
@@ -44,8 +44,30 @@ export class AuthService {
     }
   }
 
-  signin() {
-    return { message: 'Successfully signed in' };
+  async signin(data: SignInDto) {
+    const user =
+      await this.prisma.user.findUnique({
+        where: { email: data.email },
+      });
+
+    if (!user) {
+      throw new ForbiddenException(
+        'Credentials incorrect',
+      );
+    }
+
+    const passwordMatches = await argon.verify(
+      user.password,
+      data.password,
+    );
+
+    if (!passwordMatches) {
+      throw new ForbiddenException(
+        'Credentials incorrect',
+      );
+    }
+
+    console.log('sign in');
   }
 
   async signToken(
