@@ -67,7 +67,7 @@ export class AuthService {
       );
     }
 
-    console.log('sign in');
+    return this.signToken(user.id, user.email);
   }
 
   async signToken(
@@ -82,7 +82,7 @@ export class AuthService {
     const token = await this.jwtService.signAsync(
       payload,
       {
-        expiresIn: '15m',
+        expiresIn: '1440m',
         secret: this.config.get('JWT_SECRET'),
       },
     );
