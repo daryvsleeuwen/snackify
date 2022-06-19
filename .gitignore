@@ -33,3 +33,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+/src/client/.next/cache
+/src/client/.next/static
+/src/client/.next/server

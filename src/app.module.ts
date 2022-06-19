@@ -5,9 +5,10 @@ import { PrismaModule } from './api/prisma/prisma.module';
 import { UserModule } from './api/user/user.module';
 import { SnackModule } from './api/snack/snack.module';
 import { SessionModule } from './api/session/session.module';
+import { ViewModule } from './api/view/view.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, PrismaModule, UserModule, SnackModule, SessionModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, PrismaModule, UserModule, SnackModule, SessionModule, ViewModule],
   controllers: [],
   providers: [],
 })
