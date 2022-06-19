@@ -8,7 +8,15 @@ import { SessionModule } from './api/session/session.module';
 import { ViewModule } from './api/view/view.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, PrismaModule, UserModule, SnackModule, SessionModule, ViewModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
+    PrismaModule,
+    UserModule,
+    SnackModule,
+    SessionModule,
+    ViewModule,
+  ],
   controllers: [],
   providers: [],
 })

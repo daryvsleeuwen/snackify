@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Home = () => {
+const Root = () => {
   return <h1>Root page</h1>;
 };
 
-export default Home;
+export default Root;

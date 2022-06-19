@@ -4,7 +4,7 @@ import { SnackDto } from './dto';
 import { SnackService } from './snack.service';
 
 @UseGuards(AuthGuard('jwt'))
-@Controller('snack')
+@Controller('api/snack')
 export class SnackController {
   constructor(private snackService: SnackService) {}
 
