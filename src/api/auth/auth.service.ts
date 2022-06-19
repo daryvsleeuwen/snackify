@@ -75,7 +75,7 @@ export class AuthService {
         return true;
       }
     } catch (error) {
-      return null;
+      return false;
     }
   }
 }
