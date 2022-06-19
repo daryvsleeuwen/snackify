@@ -5,6 +5,7 @@ import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { throws } from 'assert';
 @Injectable()
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService, private config: ConfigService) {}
@@ -64,5 +65,17 @@ export class AuthService {
     return {
       access_token: token,
     };
+  }
+
+  async verifyToken(accessToken: string): Promise<boolean> {
+    try {
+      const user = await this.jwtService.verify(accessToken, { secret: this.config.get('JWT_SECRET') });
+
+      if (user) {
+        return true;
+      }
+    } catch (error) {
+      return null;
+    }
   }
 }
