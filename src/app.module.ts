@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './api/auth/auth.module';
 import { PrismaModule } from './api/prisma/prisma.module';
 import { UserModule } from './api/user/user.module';
+import { SnackModule } from './api/snack/snack.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { UserModule } from './api/user/user.module';
     AuthModule,
     PrismaModule,
     UserModule,
+    SnackModule,
   ],
   controllers: [],
   providers: [],

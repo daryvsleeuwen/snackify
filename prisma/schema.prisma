@@ -27,7 +27,7 @@ model Snack {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name  String
+  name  String @unique
   image String
 
   Order   Order? @relation(fields: [orderId], references: [id])
