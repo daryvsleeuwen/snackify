@@ -1,12 +1,16 @@
 import React from 'react';
-import { checkUserAuth } from '../common/utils/index';
 import axios from '../common/api/axios';
 import { useRouter } from '../../../../node_modules/next/router';
+import Header from '../common/components/header';
 
 const OrderPage = () => {
   const router = useRouter();
 
-  return <h1>Order page</h1>;
+  return (
+    <div className="order-page">
+      <Header title="Laat het snackavontuur beginnen" />
+    </div>
+  );
 };
 
 export default OrderPage;
