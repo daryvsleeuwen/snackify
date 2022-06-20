@@ -1,0 +1,24 @@
+@import 'vars';
+@import 'utils';
+@import 'pages/pages';
+@import 'components/components';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+body {
+    width: 100vw;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: $black;
+}
+  
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root{
+    width: 100vw;
+    min-height: 100vh;
+}
