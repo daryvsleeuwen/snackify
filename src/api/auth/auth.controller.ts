@@ -16,7 +16,8 @@ export class AuthController {
   singin(@Body() data: SignInDto) {
     return this.authService.signin(data);
   }
-  @Get('isAuth')
+
+  @Post('isAuth')
   isAuthenticated(@Body() data: AccessTokenDto) {
     return this.authService.verifyToken(data.accessToken);
   }
