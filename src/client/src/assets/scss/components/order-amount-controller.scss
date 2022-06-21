@@ -1,0 +1,48 @@
+.order-amount-controller{
+    display: flex;
+    height: 32px;
+    font-weight: 400;
+
+    &__decrementer, &__incrementer{
+        cursor: pointer;
+        background-color: $yellow;
+        border-radius: $border-radius-sm;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 20px;
+        user-select: none;
+
+        &--disabled{
+            cursor: unset;
+            color: $white;
+            background-color: #939393;
+        }
+    }
+
+    &--small{
+        .order-amount-controller__decrementer, .order-amount-controller__incrementer{
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &--wide{
+        .order-amount-controller__decrementer, .order-amount-controller__incrementer{
+            flex: 1;
+        }
+    }
+
+    &__amount{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        border-radius: $border-radius-sm;
+        margin: 0 10px;
+        background-color: $white;
+    }
+}

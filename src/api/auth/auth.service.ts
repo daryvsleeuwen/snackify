@@ -72,7 +72,7 @@ export class AuthService {
       const user = await this.jwtService.verify(accessToken, { secret: this.config.get('JWT_SECRET') });
 
       if (user) {
-        return true;
+        return user;
       }
     } catch (error) {
       return false;
