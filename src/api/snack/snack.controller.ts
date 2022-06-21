@@ -10,7 +10,6 @@ export class SnackController {
 
   @Post('/new')
   async addNewSnack(@Body() data: SnackDto) {
-    console.log(data);
     return this.snackService.addNewSnack(data);
   }
 

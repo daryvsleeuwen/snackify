@@ -11,15 +11,11 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: $black;
+    overflow-x: hidden !important;
 }
   
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-#root{
-    width: 100vw;
-    min-height: 100vh;
 }

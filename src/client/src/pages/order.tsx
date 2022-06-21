@@ -10,6 +10,7 @@ const OrderPage = () => {
   const router = useRouter();
   const [snacks, setSnacks] = useState([]);
   const [addedSnacks, setAddedSnacks] = useState([]);
+  const [addedBuns, setAddedBuns] = useState([]);
 
   useEffect(() => {
     axios.get('/snack/all').then((response) => {
@@ -21,14 +22,14 @@ const OrderPage = () => {
 
   return (
     <div className="order-page">
-      <Header title="Laat het snackavontuur beginnen" />
-      <div className="snack-order-overview grid">
-        <OrderContext.Provider value={{ addedSnacks, setAddedSnacks }}>
+      <OrderContext.Provider value={{ addedSnacks, setAddedSnacks, addedBuns, setAddedBuns }}>
+        <Header title="Laat het snackavontuur beginnen" />
+        <div className="snack-order-overview grid">
           {snacks.map((snack, index) => {
             return <SnackOrderBox key={index} snack={snack} />;
           })}
-        </OrderContext.Provider>
-      </div>
+        </div>
+      </OrderContext.Provider>
     </div>
   );
 };

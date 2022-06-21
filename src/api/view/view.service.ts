@@ -9,9 +9,7 @@ export class ViewService implements OnModuleInit {
     try {
       this.server = next({ dev: true, dir: './src/client' });
       await this.server.prepare();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   getNextServer(): any {

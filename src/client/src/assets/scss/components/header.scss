@@ -14,30 +14,4 @@
     &__title{
         font-size: 22px;
     }
-
-    .checkout-cart {
-        position: relative;
-
-        &__icon {
-            width: 32px;
-            height: 32px;
-            background-color: $black;
-        }
-
-        &__amount {
-            background: $white;
-            padding: 5px;
-            border-radius: 100px;
-            position: absolute;
-            top: -20px;
-            right: -15px;
-            width: 15px;
-            height: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 400;
-        }
-    }
 }

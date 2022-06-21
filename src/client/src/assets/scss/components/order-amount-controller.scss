@@ -26,6 +26,10 @@
             width: 32px;
             height: 32px;
         }
+
+        .order-amount-controller__amount{
+            border: 1px solid $black;
+        }
     }
 
     &--wide{
