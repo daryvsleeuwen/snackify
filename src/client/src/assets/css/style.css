@@ -7,14 +7,14 @@
 }
 
 button {
-  padding: 18px 24px;
+  padding: 10px 16px;
   font-weight: 600;
   font-size: 16px;
   background-color: #010101;
   color: #ffffff;
   outline: none;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
@@ -22,11 +22,11 @@ button {
   transition-duration: 400ms;
   transition-timing-function: cubic-bezier(0.21, 0.76, 0.4, 0.96);
 }
-button:hover {
-  color: #010101;
-  background-color: #F5D93F;
-}
 
+.button--red {
+  color: #ffffff;
+  background-color: #CF0040;
+}
 .button--yellow {
   color: #010101;
   background-color: #F5D93F;
@@ -47,6 +47,9 @@ button:hover {
   padding: 12px 20px;
   font-size: 14px;
   border-radius: 6px;
+}
+.button--flex {
+  width: 100%;
 }
 
 .input__wrapper {
@@ -157,7 +160,7 @@ button:hover {
   border-radius: 12px;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
   background-color: #ffffff;
-  padding: 20px 30px 30px 30px;
+  padding: 20px 25px 25px 25px;
 }
 .checkout-popup__title {
   font-size: 18px;
@@ -183,9 +186,17 @@ button:hover {
 .checkout-popup__order-row__bun-image {
   width: 50px !important;
 }
+.checkout-popup__amount {
+  font-size: 18px;
+  font-weight: 400;
+}
 .checkout-popup__no-snacks {
   font-size: 14px;
   font-weight: 400;
+}
+.checkout-popup__button-wrapper {
+  width: 100%;
+  margin-top: 30px;
 }
 
 .snack-order-box {

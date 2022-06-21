@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef } from 'react';
+import axios from '../api/axios';
 import { OrderContext } from '../../pages/order';
-import Image from 'next/image';
 import OrderAmountController from './order-amount-controller';
+import Button from './button';
 
 const CheckoutPopup = () => {
   const { addedSnacks, setAddedSnacks } = useContext(OrderContext);
@@ -46,6 +47,17 @@ const CheckoutPopup = () => {
     return null;
   };
 
+  const checkOutOrder = () => {
+    console.log('Checkout order and route to finish page');
+    const order = {};
+
+    axios.post('/session/addorder', order).then((success) => {
+      if (success) {
+        window.location.href = '/order/finish';
+      }
+    });
+  };
+
   return (
     <div className="checkout-popup" ref={popup}>
       <p className="checkout-popup__title">Snacks</p>
@@ -81,6 +93,9 @@ const CheckoutPopup = () => {
           onIncrement={addBun}
           callbackValue="brown"
         />
+      </div>
+      <div className="checkout-popup__button-wrapper">
+        <Button size="medium" color="red" text="Bestelling afronden" fill={true} onClick={checkOutOrder} />
       </div>
     </div>
   );
