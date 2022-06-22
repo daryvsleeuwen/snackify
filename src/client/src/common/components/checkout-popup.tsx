@@ -4,14 +4,18 @@ import { OrderContext } from '../../pages/order';
 import OrderAmountController from './order-amount-controller';
 import Button from './button';
 
-const CheckoutPopup = () => {
-  const { addedSnacks, setAddedSnacks } = useContext(OrderContext);
+type CheckoutPopupProps = {
+  visible: boolean;
+};
+
+const CheckoutPopup = (props: CheckoutPopupProps) => {
+  const { addedSnacks } = useContext(OrderContext);
   const { addedBuns, setAddedBuns } = useContext(OrderContext);
   const popup = useRef(null);
 
   useEffect(() => {
     if (popup.current.getBoundingClientRect().right > window.innerWidth) {
-      popup.current.style.left = `-85%`;
+      popup.current.style.left = `-70%`;
     }
 
     // window.addEventListener('resize', () => {
