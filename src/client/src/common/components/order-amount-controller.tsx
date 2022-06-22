@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { OrderContext } from '../../pages/order';
+import React, { useState } from 'react';
 
 type OrderAmountControllerProps = {
   type: string;

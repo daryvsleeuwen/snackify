@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { OrderContext } from '../../pages/order';
+import { OrderContext } from '../../pages/order/index';
 import OrderAmountController from './order-amount-controller';
 
 export type snackData = {

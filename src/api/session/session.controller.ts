@@ -1,5 +1,7 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+import { AddOrderDto } from './dto';
 import { SessionService } from './session.service';
 
 @UseGuards(AuthGuard('jwt'))
@@ -15,5 +17,12 @@ export class SessionController {
   @Post('/new')
   createSession() {
     this.sessionService.createSession();
+  }
+
+  @Post('/addorder')
+  addOrder(@Body() data: AddOrderDto, @Req() req: Request) {
+    if (req.user) {
+      return this.sessionService.addOrder(data, req.user);
+    }
   }
 }

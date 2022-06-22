@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ShoppingCart } from 'react-feather';
 import CheckoutPopup from './checkout-popup';
-import { OrderContext } from '../../pages/order';
+import { OrderContext } from '../../pages/order/index';
 
 type HeaderProps = {
   title: string;

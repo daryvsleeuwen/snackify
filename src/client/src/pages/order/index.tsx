@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext } from 'react';
-import axios from '../common/api/axios';
-import { useRouter } from '../../../../node_modules/next/router';
-import Header from '../common/components/header';
-import SnackOrderBox from '../common/components/snack-order-box';
+import axios from '../../common/api/axios';
+import { useRouter } from 'next/router';
+import Header from '../../common/components/header';
+import SnackOrderBox from '../../common/components/snack-order-box';
 
 export const OrderContext = createContext(null);
 

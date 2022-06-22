@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import axios from '../api/axios';
-import { OrderContext } from '../../pages/order';
+import { OrderContext } from '../../pages/order/index';
 import OrderAmountController from './order-amount-controller';
 import Button from './button';
+import { response } from 'express';
 
 type CheckoutPopupProps = {
   visible: boolean;
@@ -52,11 +53,25 @@ const CheckoutPopup = (props: CheckoutPopupProps) => {
   };
 
   const checkOutOrder = () => {
-    console.log('Checkout order and route to finish page');
-    const order = {};
+    let whiteBuns = 0;
+    let brownBuns = 0;
 
-    axios.post('/session/addorder', order).then((success) => {
-      if (success) {
+    addedBuns.forEach((bun) => {
+      bun === 'white' ? whiteBuns++ : brownBuns++;
+    });
+
+    const snackIds = addedSnacks.map((snack) => {
+      return { id: snack.id };
+    });   
+
+    const order = {
+      snacks: snackIds,
+      whiteBuns: whiteBuns,
+      brownBuns: brownBuns,
+    };
+
+    axios.post('/session/addorder', order).then((response) => {
+      if (response.data) {
         window.location.href = '/order/finish';
       }
     });
