@@ -3,13 +3,8 @@ import axios from '../api/axios';
 import { OrderContext } from '../../pages/order/index';
 import OrderAmountController from './order-amount-controller';
 import Button from './button';
-import { response } from 'express';
 
-type CheckoutPopupProps = {
-  visible: boolean;
-};
-
-const CheckoutPopup = (props: CheckoutPopupProps) => {
+const CheckoutPopup = () => {
   const { addedSnacks } = useContext(OrderContext);
   const { addedBuns, setAddedBuns } = useContext(OrderContext);
   const popup = useRef(null);
@@ -62,7 +57,7 @@ const CheckoutPopup = (props: CheckoutPopupProps) => {
 
     const snackIds = addedSnacks.map((snack) => {
       return { id: snack.id };
-    });   
+    });
 
     const order = {
       snacks: snackIds,

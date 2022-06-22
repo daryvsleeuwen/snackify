@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ShoppingCart } from 'react-feather';
 import CheckoutPopup from './checkout-popup';
 import { OrderContext } from '../../pages/order/index';
@@ -9,7 +9,6 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const { addedSnacks } = useContext(OrderContext);
-  const [visibleCheckout, setVisibleCheckout] = useState(false);
   const checkoutCart = useRef(null);
   const checkoutPopupWrapper = useRef(null);
 
@@ -49,7 +48,7 @@ const Header = (props: HeaderProps) => {
             <p className="checkout-cart__amount">{addedSnacks.length}</p>
           </div>
           <div ref={checkoutPopupWrapper} className="checkout-popup__wrapper">
-            <CheckoutPopup visible={visibleCheckout} />
+            <CheckoutPopup />
           </div>
         </div>
       </div>

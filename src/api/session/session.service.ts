@@ -41,7 +41,7 @@ export class SessionService {
     try {
       const latestSession = await this.getLatestSession();
 
-      if (!latestSession) return false;   
+      if (!latestSession) return false;
 
       const order = await this.prisma.order.create({
         data: {
