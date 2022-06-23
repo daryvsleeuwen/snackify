@@ -22,7 +22,7 @@ export class AuthService {
         },
       });
 
-      return this.signToken(user.id, user.email, user.name);
+      return this.signToken(user.id, user.email, user.name, user.role);
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
@@ -47,14 +47,15 @@ export class AuthService {
       throw new ForbiddenException('Credentials incorrect');
     }
 
-    return this.signToken(user.id, user.email, user.name);
+    return this.signToken(user.id, user.email, user.name, user.role);
   }
 
-  async signToken(userId: number, email: string, name: string): Promise<{ access_token: string }> {
+  async signToken(userId: number, email: string, name: string, role: string): Promise<{ access_token: string }> {
     const payload = {
       sub: userId,
       email,
       name,
+      role,
     };
 
     const token = await this.jwtService.signAsync(payload, {

@@ -14,8 +14,6 @@ function App({ Component, pageProps }) {
     if (router.pathname !== '/login') {
       checkUserAuth(
         (data: any) => {
-          console.log(data);
-
           if (router.pathname === '/session' && data.role !== 'ADMIN') window.location.href = '/login';
           setPage(
             <UserContext.Provider value={data}>
