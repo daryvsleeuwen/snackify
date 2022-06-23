@@ -16,7 +16,7 @@ export class SessionController {
 
   @Post('/new')
   createSession(@Body() data: any) {
-    this.sessionService.createSession(data);
+    return this.sessionService.createSession(data);
   }
 
   @Post('/addorder')
