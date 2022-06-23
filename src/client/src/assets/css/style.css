@@ -501,6 +501,7 @@ button {
   display: flex;
   align-items: center;
   transition: background-color 300ms cubic-bezier(0.21, 0.76, 0.4, 0.96);
+  user-select: none;
 }
 .select-user-box--selected {
   background-color: #D6265C;
@@ -523,6 +524,7 @@ button {
   margin-right: 15px;
   overflow: hidden;
   border-radius: 100px;
+  user-select: none;
 }
 .select-user-box__profile img {
   width: 100%;

@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     transition: background-color 300ms $easing;
+    user-select: none;
 
     &--selected{
         background-color: $faded-red;
@@ -37,6 +38,7 @@
         margin-right: 15px;
         overflow: hidden;
         border-radius: 100px;
+        user-select: none;
 
         img{
             width: 100%;
