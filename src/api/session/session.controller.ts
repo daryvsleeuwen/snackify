@@ -9,7 +9,7 @@ import { SessionService } from './session.service';
 export class SessionController {
   constructor(private sessionService: SessionService) {}
 
-  @Get()
+  @Get('/latest')
   getLatestSession() {
     return this.sessionService.getLatestSession();
   }
