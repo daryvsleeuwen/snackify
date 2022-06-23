@@ -1,6 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { AddOrderDto } from './dto';
+import mailTemplate from './session-mail-template';
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.strato.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'contact@daryvansleeuwen.nl',
+    pass: 'Kerstman1!',
+  },
+});
 
 @Injectable()
 export class SessionService {
@@ -34,8 +46,14 @@ export class SessionService {
   async createSession(selectedUsers: any[]) {
     try {
       const session = await this.prisma.session.create({ data: {} });
+      const recipients = selectedUsers.map((user) => user.email);
 
-      //Send mail to all selected users
+      await transporter.sendMail({
+        from: 'contact@daryvansleeuwen.nl',
+        bcc: recipients,
+        subject: 'Snackify, plaats je bestelling',
+        html: mailTemplate,
+      });
 
       return session;
     } catch (error) {
