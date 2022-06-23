@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useSyncExternalStore } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../common/api/axios';
 import Header from '../common/components/header';
 import Button from '../common/components/button';
@@ -7,11 +7,18 @@ import SelectUserBox from '../common/components/select-user-box';
 const SessionPage = () => {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [latestSession, setLatestSession] = useState(false);
 
   useEffect(() => {
-    axios.get('/user/all').then((response) => {
-      if (response.data) {
-        setUsers(response.data);
+    axios.get('/session/latest').then((response) => {
+      setLatestSession(response.data);
+
+      if (!response.data) {
+        axios.get('/user/all').then((response) => {
+          if (response.data) {
+            setUsers(response.data);
+          }
+        });
       }
     });
   }, []);
@@ -33,7 +40,22 @@ const SessionPage = () => {
     setSelectedUsers(filtered);
   };
 
-  return (
+  const renderSessionAlreadyExist = () => {
+    return (
+      <div className="session-page">
+        <div className="no-session">
+          <h2>
+            Ho Ho Ho <span>Chef Snacks</span>, volgens mij heb jij al een sessie gestart.
+          </h2>
+          <h3>Snacken is leuk, maar we moeten niet te dik worden</h3>
+        </div>
+      </div>
+    );
+  };
+
+  return latestSession ? (
+    renderSessionAlreadyExist()
+  ) : (
     <div className="session-page">
       <Header title="Nieuwe sessie aanmaken" cart={false} />
       <div className="select-users-overview grid">

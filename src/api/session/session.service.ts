@@ -20,6 +20,8 @@ export class SessionService {
         },
       });
 
+      if (session.length <= 0) return false;
+
       const epoch = session[0].createdAt.getTime();
       if (epoch + 1_800_000 < Date.now()) return false;
 

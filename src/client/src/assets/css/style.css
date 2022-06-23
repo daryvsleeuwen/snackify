@@ -101,6 +101,28 @@ button {
   margin-bottom: 40px;
 }
 
+.no-session {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px;
+}
+.no-session h2 {
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.no-session h3 {
+  font-weight: 400;
+}
+.no-session span {
+  font-weight: 600;
+  color: #D6265C;
+}
+
 .order-page .snack-order-overview {
   margin: 150px auto;
 }
@@ -129,27 +151,6 @@ button {
   .order-page .overview-grid {
     grid-template-columns: 1fr;
   }
-}
-.order-page .no-session {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 60px;
-}
-.order-page .no-session h2 {
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-.order-page .no-session h3 {
-  font-weight: 400;
-}
-.order-page .no-session span {
-  font-weight: 600;
-  color: #D6265C;
 }
 
 .order-finish-page {

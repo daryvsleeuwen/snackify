@@ -124,3 +124,28 @@ button{
     font-weight: 600;
     margin-bottom: 40px;
 }
+
+.no-session{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px;
+    
+    h2{
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    h3{
+        font-weight: 400;
+    }
+
+    span{
+        font-weight: 600;
+        color: $faded-red;
+    }
+}
