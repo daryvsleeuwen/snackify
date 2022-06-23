@@ -4,9 +4,7 @@ import Button from '../../common/components/button';
 const OrderFinishPage = () => {
   const games = [null, null, null];
 
-  const startSnackGame = () => {
-    console.log('start snake game');
-  };
+  const startSnackGame = () => {};
 
   const renderGameBoxes = () => {
     return games.map((game) => {
