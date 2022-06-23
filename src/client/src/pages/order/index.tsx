@@ -47,7 +47,7 @@ const OrderPage = () => {
   ) : (
     <div className="order-page">
       <OrderContext.Provider value={{ addedSnacks, setAddedSnacks, addedBuns, setAddedBuns }}>
-        <Header title="Laat het snackavontuur beginnen" />
+        <Header title="Laat het snackavontuur beginnen" cart={true} />
 
         <div className="snack-order-overview grid">
           <p className="order-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>

@@ -14,6 +14,7 @@ export class SessionService {
           orders: {
             include: {
               snacks: true,
+              user: true,
             },
           },
         },
@@ -55,7 +56,7 @@ export class SessionService {
         },
       });
 
-      return true;
+      return order;
     } catch (error) {
       throw error;
     }
