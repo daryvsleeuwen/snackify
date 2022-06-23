@@ -1,8 +1,9 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import axios from '../../common/api/axios';
 import { useRouter } from 'next/router';
 import Header from '../../common/components/header';
 import SnackOrderBox from '../../common/components/snack-order-box';
+import { UserContext } from '../_app';
 
 export const OrderContext = createContext(null);
 
@@ -12,6 +13,7 @@ const OrderPage = () => {
   const [addedSnacks, setAddedSnacks] = useState([]);
   const [addedBuns, setAddedBuns] = useState([]);
   const [latestSession, setLatestSession] = useState(false);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     axios.get('/session/latest').then((response) => {
@@ -46,10 +48,14 @@ const OrderPage = () => {
     <div className="order-page">
       <OrderContext.Provider value={{ addedSnacks, setAddedSnacks, addedBuns, setAddedBuns }}>
         <Header title="Laat het snackavontuur beginnen" />
+
         <div className="snack-order-overview grid">
-          {snacks.map((snack, index) => {
-            return <SnackOrderBox key={index} snack={snack} />;
-          })}
+          <p className="order-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>
+          <div className="overview-grid">
+            {snacks.map((snack, index) => {
+              return <SnackOrderBox key={index} snack={snack} />;
+            })}
+          </div>
         </div>
       </OrderContext.Provider>
     </div>

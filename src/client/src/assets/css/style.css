@@ -95,12 +95,19 @@ button {
   color: #010101;
 }
 
+.order-page .order-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
 .order-page .snack-order-overview {
+  margin: 150px auto;
+}
+.order-page .overview-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 40px;
   row-gap: 40px;
-  margin: 150px auto;
 }
 .order-page .no-session {
   width: 100vw;

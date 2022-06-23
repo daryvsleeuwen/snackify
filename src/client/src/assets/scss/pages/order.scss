@@ -1,10 +1,19 @@
 .order-page{
+    .order-title{
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 40px;
+    }
+
     .snack-order-overview{
+        margin: 150px auto;
+    }
+
+    .overview-grid{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         column-gap: 40px;
         row-gap: 40px;
-        margin: 150px auto;
     }
 
     .no-session{

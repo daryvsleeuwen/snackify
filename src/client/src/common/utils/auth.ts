@@ -1,14 +1,14 @@
 import axios from '../api/axios';
 
-export async function checkUserAuth(onsuccess: () => void, onfail: () => void) {
+export async function checkUserAuth(onsuccess: (data: any) => void, onfail: () => void) {
   const accessToken = localStorage.getItem('accessToken');
 
   if (accessToken !== null && accessToken !== '') {
-    const isAuth = await axios.post('/auth/isAuth', { accessToken: accessToken });
+    const response = await axios.post('/auth/isAuth', { accessToken: accessToken });
 
-    if (isAuth.data) {
+    if (response.data) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      onsuccess();
+      onsuccess(response.data);
     } else {
       onfail();
     }
