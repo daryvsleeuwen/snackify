@@ -15,6 +15,9 @@
 
         .select-user-box{
             &__checkbox{
+                width: 36px;
+                height: 36px;
+                margin-right: 15px;
                 background-color: $white;
     
                 svg{
@@ -31,7 +34,7 @@
     &__profile{
         width: 50px;
         height: 50px;
-        margin: 0 15px;
+        margin-right: 15px;
         overflow: hidden;
         border-radius: 100px;
 
@@ -43,14 +46,13 @@
     }
 
     &__checkbox{
-        width: 36px;
-        height: 36px;
+        width: 0;
+        height: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: $border-radius-sm;
         background-color: $white;
-        border: 2px solid $faded-red;
         transition: all 300ms $easing;
 
         svg{
