@@ -60,7 +60,7 @@ const SessionPage = () => {
       <Header title="Nieuwe sessie aanmaken" cart={false} />
       <div className="select-users-overview grid">
         <div className="select-users__top">
-          <p className="section-title">Selecteer welke medewerkens op kantoor zijn</p>
+          <p className="section-title">Selecteer welke medewerkers op kantoor zijn</p>
           <Button size="medium" text="Sessie aanmaken" color="red" onClick={createNewSession} />
         </div>
         <div className="select-users__grid">
