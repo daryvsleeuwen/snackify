@@ -9,8 +9,6 @@ const DashboardPage = () => {
   useEffect(() => {
     axios.get('/session/latest').then((response) => {
       if (response.data) {
-        console.log(response.data);
-
         setLatestSession(response.data);
       }
     });

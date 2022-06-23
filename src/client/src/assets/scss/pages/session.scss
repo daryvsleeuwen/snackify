@@ -1,0 +1,25 @@
+.session-page{
+    .select-users-overview{
+        margin: 150px auto;
+
+        .section-title{
+            margin-bottom: 0;
+        }
+
+        .select-users{
+            &__top{
+                display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            }
+
+            &__grid{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                column-gap: 40px;
+                row-gap: 40px;
+            }
+        }
+    }
+}

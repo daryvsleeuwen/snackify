@@ -95,11 +95,12 @@ button {
   color: #010101;
 }
 
-.order-page .order-title {
+.section-title {
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 40px;
 }
+
 .order-page .snack-order-overview {
   margin: 150px auto;
 }
@@ -226,6 +227,25 @@ button {
 
 .dashboard-page .ordered-items-overview {
   margin: 150px auto;
+}
+
+.session-page .select-users-overview {
+  margin: 150px auto;
+}
+.session-page .select-users-overview .section-title {
+  margin-bottom: 0;
+}
+.session-page .select-users-overview .select-users__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.session-page .select-users-overview .select-users__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 40px;
 }
 
 .header {
@@ -467,6 +487,66 @@ button {
 .ordered-items-row__amounts--flex img {
   width: auto;
   height: 44px;
+}
+
+.select-user-box {
+  background-color: #ffffff;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  transition: background-color 300ms cubic-bezier(0.21, 0.76, 0.4, 0.96);
+}
+.select-user-box--selected {
+  background-color: #D6265C;
+}
+.select-user-box--selected .select-user-box__checkbox {
+  background-color: #ffffff;
+}
+.select-user-box--selected .select-user-box__checkbox svg {
+  stroke: #CF0040;
+}
+.select-user-box--selected .select-user-box__name {
+  color: #ffffff;
+}
+.select-user-box__profile {
+  width: 50px;
+  height: 50px;
+  margin: 0 15px;
+  overflow: hidden;
+  border-radius: 100px;
+}
+.select-user-box__profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.select-user-box__checkbox {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: 2px solid #D6265C;
+  transition: all 300ms cubic-bezier(0.21, 0.76, 0.4, 0.96);
+}
+.select-user-box__checkbox svg {
+  width: 50%;
+  height: 50%;
+  stroke: #010101;
+}
+.select-user-box__name {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 300ms cubic-bezier(0.21, 0.76, 0.4, 0.96);
+  user-select: none;
 }
 
 body {

@@ -50,7 +50,7 @@ const OrderPage = () => {
         <Header title="Laat het snackavontuur beginnen" cart={true} />
 
         <div className="snack-order-overview grid">
-          <p className="order-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>
+          <p className="section-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>
           <div className="overview-grid">
             {snacks.map((snack, index) => {
               return <SnackOrderBox key={index} snack={snack} />;

@@ -29,9 +29,12 @@ export class SessionService {
     }
   }
 
-  async createSession() {
+  async createSession(selectedUsers: any[]) {
     try {
       const session = await this.prisma.session.create({ data: {} });
+
+      //Send mail to all selected users
+
       return session;
     } catch (error) {
       throw error;
