@@ -37,8 +37,7 @@ const LoginPage = () => {
       <div className="login-box">
         <p className="login__title">Inloggen</p>
         <p className="login__subtitle">Welkom beste snackbaas!</p>
-        <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' margin={true} onChange={setPassword} />
-
+        <Input label='Email' placeholder='v.achternaam@lameco.nl' margin={true} onChange={setEmail} />
         <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' onChange={setPassword} />
         <p className="login__forgot-password">Wachtwoord vergeten?</p>
         <Button color="black" size="medium" text="Inloggen" fill={true} onClick={tryLogin} />

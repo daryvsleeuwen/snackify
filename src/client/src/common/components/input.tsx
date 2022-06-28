@@ -11,7 +11,7 @@ type InputProps = {
 const Input = (props: InputProps) => {
   return (
     <div className={`input__wrapper${props.margin ? ' input__wrapper--margin' : ''}`}>
-      <label>Wachtwoord</label>
+      <label>{props.label}</label>
       <input
         type={props.type !== null ? props.type : 'text'}
         placeholder={props.placeholder}
