@@ -24,11 +24,13 @@ const SessionPage = () => {
   }, []);
 
   const createNewSession = () => {
-    axios.post('/session/new', selectedUsers).then((response) => {
-      if (response.data) {
-        window.location.href = '/dashboard';
-      }
-    });
+    if (selectedUsers.length > 0) {
+      axios.post('/session/new', selectedUsers).then((response) => {
+        if (response.data) {
+          window.location.href = '/dashboard';
+        }
+      });
+    }
   };
 
   const selectUser = (user: any) => {
