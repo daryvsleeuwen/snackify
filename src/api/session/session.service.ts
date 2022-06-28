@@ -74,7 +74,11 @@ export class SessionService {
       if (!latestSession) return false;
 
       for(let i = 0; i < latestSession.orders.length; i++){
-        return false;
+        const order = latestSession.orders[i]
+
+        if(order.userId === user.id){
+          return false;
+        }
       }
 
       const order = await this.prisma.order.create({
