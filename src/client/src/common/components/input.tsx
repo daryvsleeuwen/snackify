@@ -10,7 +10,7 @@ type InputProps = {
 
 const Input = (props: InputProps) => {
   return (
-    <div className={`input__wrapper${props.margin ? 'input__wrapper--margin' : ''}`}>
+    <div className={`input__wrapper${props.margin ? ' input__wrapper--margin' : ''}`}>
       <label>Wachtwoord</label>
       <input
         type={props.type !== null ? props.type : 'text'}
