@@ -5,21 +5,23 @@ import Button from '../common/components/button';
 
 const LoginPage = () => {
   const router = useRouter();
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const tryLogin = async () => {
-    const formData = { email: email, password: password };
-    const data = await axios.post('/auth/signin', formData);
-    const token = data.data.access_token;
+    if (email !== '' && password !== '') {
+      const formData = { email: email, password: password };
+      const data = await axios.post('/auth/signin', formData);
+      const token = data.data.access_token;
 
-    if (token !== '') {
-      localStorage.setItem('accessToken', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      window.location.href = '/order';
-    } else {
-      setEmail('');
-      setPassword('');
+      if (token !== '') {
+        localStorage.setItem('accessToken', token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        window.location.href = '/order';
+      } else {
+        setEmail('');
+        setPassword('');
+      }
     }
   };
 

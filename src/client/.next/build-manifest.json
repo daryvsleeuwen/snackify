@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/login.js"
-    ],
-    "/order": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/order.js"
     ]
   },
   "ampFirstPages": []

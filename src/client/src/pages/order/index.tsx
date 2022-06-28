@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import axios from '../../common/api/axios';
-import { useRouter } from 'next/router';
 import Header from '../../common/components/header';
 import SnackOrderBox from '../../common/components/snack-order-box';
 import { UserContext } from '../_app';
@@ -8,7 +7,6 @@ import { UserContext } from '../_app';
 export const OrderContext = createContext(null);
 
 const OrderPage = () => {
-  const router = useRouter();
   const [snacks, setSnacks] = useState([]);
   const [addedSnacks, setAddedSnacks] = useState([]);
   const [addedBuns, setAddedBuns] = useState([]);

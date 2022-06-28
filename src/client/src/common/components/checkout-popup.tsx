@@ -5,34 +5,25 @@ import OrderAmountController from './order-amount-controller';
 import Button from './button';
 
 const CheckoutPopup = () => {
-  const { addedSnacks } = useContext(OrderContext);
-  const { addedBuns, setAddedBuns } = useContext(OrderContext);
+  const { addedBuns, setAddedBuns, addedSnacks } = useContext(OrderContext);
   const popup = useRef(null);
 
   useEffect(() => {
     if (popup.current.getBoundingClientRect().right > window.innerWidth) {
       popup.current.style.left = `-70%`;
     }
-
-    // window.addEventListener('resize', () => {
-    //   if (popup.current.getBoundingClientRect().right > window.innerWidth) {
-    //     popup.current.style.left = `-85%`;
-    //   }
-    // });
   }, []);
 
   const removeBun = (bunType: string) => {
-    addedBuns.every((bun, index) => {
-      if (bun === bunType) {
+    for (let i = 0; i < addedBuns.length; i++) {
+      if (addedBuns[i] === bunType) {
         const copy = [...addedSnacks];
-        copy.splice(index, 1);
+        copy.splice(i, 1);
 
         setAddedBuns(copy);
-        return false;
-      } else {
-        return true;
+        break;
       }
-    });
+    }
   };
 
   const addBun = (bunType: string) => {
