@@ -50,27 +50,25 @@ button {
   width: 100%;
 }
 
-.input__wrapper {
+.input__wrapper--margin {
   margin-bottom: 25px;
 }
 .input__wrapper label {
   display: block;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .input__wrapper input {
   display: block;
   border: none !important;
+  width: 100%;
   max-width: 100%;
-  padding: 18px 20px;
+  padding: 15px 20px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 16px;
   border-radius: 8px;
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
   transition: border 300ms cubic-bezier(0.21, 0.76, 0.4, 0.96);
 }
 .input__wrapper input::placeholder {
@@ -246,6 +244,49 @@ button {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 40px;
   row-gap: 40px;
+}
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-page .snackify-title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  font-weight: 700;
+  color: #D6265C;
+}
+.login-page .login-box {
+  width: 450px;
+  max-width: 90vw;
+  background-color: #D6265C;
+  border-radius: 12px;
+  padding: 30px 40px;
+  color: white;
+}
+.login-page .login-box .login__title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.login-page .login-box .login__subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+.login-page .login-box .login__forgot-password {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  text-align: right;
 }
 
 .header {
