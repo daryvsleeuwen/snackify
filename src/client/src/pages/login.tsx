@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from '../../../../node_modules/next/router';
 import axios from '../common/api/axios';
 import Button from '../common/components/button';
+import Input from '../common/components/input';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -36,26 +37,9 @@ const LoginPage = () => {
       <div className="login-box">
         <p className="login__title">Inloggen</p>
         <p className="login__subtitle">Welkom beste snacker!</p>
-        <div className="input__wrapper input__wrapper--margin">
-          <label>Email</label>
-          <input
-            type="text"
-            placeholder="v.achternaam@lameco.nl"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <div className="input__wrapper">
-          <label>Wachtwoord</label>
-          <input
-            type="password"
-            placeholder="Voer je wachtwoord in"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </div>
+        <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' margin={true} onChange={setPassword} />
+
+        <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' onChange={setPassword} />
         <p className="login__forgot-password">Wachtwoord vergeten?</p>
         <Button color="black" size="medium" text="Inloggen" fill={true} onClick={tryLogin} />
       </div>

@@ -11,5 +11,5 @@ export class AddOrderDto {
 
   @IsNotEmpty()
   @IsArray()
-  snacks: [{id: number}];
+  snacks: [{ id: number }];
 }
