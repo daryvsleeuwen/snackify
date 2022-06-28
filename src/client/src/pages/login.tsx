@@ -36,7 +36,7 @@ const LoginPage = () => {
       <p className="snackify-title">Snackify</p>
       <div className="login-box">
         <p className="login__title">Inloggen</p>
-        <p className="login__subtitle">Welkom beste snacker!</p>
+        <p className="login__subtitle">Welkom beste snackbaas!</p>
         <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' margin={true} onChange={setPassword} />
 
         <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' onChange={setPassword} />
