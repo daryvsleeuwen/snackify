@@ -7,9 +7,9 @@ const OrderFinishPage = () => {
   const startSnackGame = () => {};
 
   const renderGameBoxes = () => {
-    return games.map((game) => {
+    return games.map((game, index) => {
       return (
-        <div className="order-finish-page__game-box">
+        <div key={index} className="order-finish-page__game-box">
           <img src="/images/snack-pong-preview.png" className="order-finish-page__game-preview-image" />
           <div className="order-finish-page__image-overlay"></div>
           <p className="order-finish-page__game-title">Snack pong</p>

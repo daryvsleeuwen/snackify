@@ -28,7 +28,11 @@ export class SessionService {
           orders: {
             include: {
               snacks: true,
-              user: true
+              user: {
+                select: {
+                  profileImage: true
+                }
+              }
             },
           },
         },
@@ -38,8 +42,6 @@ export class SessionService {
 
       const epoch = session[0].createdAt.getTime();
       if (epoch + 1_800_000 < Date.now()) return false;
-
-  
 
       return session[0];
     } catch (error) {
@@ -70,6 +72,10 @@ export class SessionService {
       const latestSession = await this.getLatestSession();
 
       if (!latestSession) return false;
+
+      for(let i = 0; i < latestSession.orders.length; i++){
+        return false;
+      }
 
       const order = await this.prisma.order.create({
         data: {
