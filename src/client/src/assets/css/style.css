@@ -98,7 +98,7 @@ button {
   margin-bottom: 40px;
 }
 
-.no-session {
+.execption-message {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -108,14 +108,14 @@ button {
   text-align: center;
   padding: 60px;
 }
-.no-session h2 {
+.execption-message h2 {
   font-weight: 500;
   margin-bottom: 20px;
 }
-.no-session h3 {
+.execption-message h3 {
   font-weight: 400;
 }
-.no-session span {
+.execption-message span {
   font-weight: 600;
   color: #D6265C;
 }

@@ -11,18 +11,30 @@ const OrderPage = () => {
   const [addedSnacks, setAddedSnacks] = useState([]);
   const [addedBuns, setAddedBuns] = useState([]);
   const [latestSession, setLatestSession] = useState(false);
+  const [alreadyOrdered, setAlreadyOrdered] = useState(false);
   const user = useContext(UserContext);
-
+  
   useEffect(() => {
-    axios.get('/session/latest').then((response) => {
-      setLatestSession(response.data);
-
+    axios.get('/session/latest').then((response) => {      
       if (response.data) {
-        axios.get('/snack/all').then((response) => {
-          if (response.data) {
-            setSnacks(response.data);
+        let already_ordered = false;
+
+        response.data.orders.forEach(order =>{
+          if(order.userId === user.sub){
+            already_ordered = true;
           }
-        });
+        })
+
+        if(!already_ordered){
+          axios.get('/snack/all').then((response) => {
+            if (response.data) {
+              setSnacks(response.data);
+            }
+          });
+        }
+
+        setAlreadyOrdered(already_ordered)
+        setLatestSession(response.data);
       }
     });
   }, []);
@@ -30,7 +42,7 @@ const OrderPage = () => {
   const renderNoSession = () => {
     return (
       <div className="order-page">
-        <div className="no-session">
+        <div className="execption-message">
           <h2>
             Heee snackfanaat, er is helaas nog geen sessie gestart door <span>Chef Snacks</span>
           </h2>
@@ -40,9 +52,22 @@ const OrderPage = () => {
     );
   };
 
-  return !latestSession ? (
-    renderNoSession()
-  ) : (
+  const renderAlreadyOrdered = () => {
+    return (
+      <div className="order-page">
+        <div className="execption-message">
+          <h2>
+            Zo zo zo fanatiekeling, volgens mij heb jij al besteld.
+          </h2>
+        </div>
+      </div>
+    );
+  };  
+
+  if(!latestSession) return renderNoSession();
+  if(alreadyOrdered) return renderAlreadyOrdered();
+
+  return (
     <div className="order-page">
       <OrderContext.Provider value={{ addedSnacks, setAddedSnacks, addedBuns, setAddedBuns }}>
         <Header title="Laat het snackavontuur beginnen" cart={true} />

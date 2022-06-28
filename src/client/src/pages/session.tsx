@@ -45,7 +45,7 @@ const SessionPage = () => {
   const renderSessionAlreadyExist = () => {
     return (
       <div className="session-page">
-        <div className="no-session">
+        <div className="execption-message">
           <h2>
             Ho Ho Ho <span>Chef Snacks</span>, volgens mij heb jij al een sessie gestart.
           </h2>

@@ -28,7 +28,7 @@ export class SessionService {
           orders: {
             include: {
               snacks: true,
-              user: true,
+              user: true
             },
           },
         },
@@ -38,6 +38,8 @@ export class SessionService {
 
       const epoch = session[0].createdAt.getTime();
       if (epoch + 1_800_000 < Date.now()) return false;
+
+  
 
       return session[0];
     } catch (error) {
