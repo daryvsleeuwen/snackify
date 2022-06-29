@@ -13,19 +13,19 @@ const OrderPage = () => {
   const [latestSession, setLatestSession] = useState(false);
   const [alreadyOrdered, setAlreadyOrdered] = useState(false);
   const user = useContext(UserContext);
-  
+
   useEffect(() => {
-    axios.get('/session/latest').then((response) => {      
+    axios.get('/session/latest').then((response) => {
       if (response.data) {
         let already_ordered = false;
 
-        response.data.orders.forEach(order =>{
-          if(order.userId === user.sub){
+        response.data.orders.forEach((order) => {
+          if (order.userId === user.sub) {
             already_ordered = true;
           }
-        })
+        });
 
-        if(!already_ordered){
+        if (!already_ordered) {
           axios.get('/snack/all').then((response) => {
             if (response.data) {
               setSnacks(response.data);
@@ -33,7 +33,7 @@ const OrderPage = () => {
           });
         }
 
-        setAlreadyOrdered(already_ordered)
+        setAlreadyOrdered(already_ordered);
         setLatestSession(response.data);
       }
     });
@@ -56,16 +56,14 @@ const OrderPage = () => {
     return (
       <div className="order-page">
         <div className="execption-message">
-          <h2>
-            Zo zo zo fanatiekeling, volgens mij heb jij al besteld.
-          </h2>
+          <h2>Zo zo zo fanatiekeling, volgens mij heb jij al besteld.</h2>
         </div>
       </div>
     );
-  };  
+  };
 
-  if(!latestSession) return renderNoSession();
-  if(alreadyOrdered) return renderAlreadyOrdered();
+  if (!latestSession) return renderNoSession();
+  if (alreadyOrdered) return renderAlreadyOrdered();
 
   return (
     <div className="order-page">

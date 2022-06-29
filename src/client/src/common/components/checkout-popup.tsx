@@ -17,7 +17,7 @@ const CheckoutPopup = () => {
   const removeBun = (bunType: string) => {
     for (let i = 0; i < addedBuns.length; i++) {
       if (addedBuns[i] === bunType) {
-        const copy = [...addedSnacks];
+        const copy = [...addedBuns];
         copy.splice(i, 1);
 
         setAddedBuns(copy);
