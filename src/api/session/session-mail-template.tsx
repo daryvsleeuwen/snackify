@@ -48,6 +48,6 @@ export default `<!DOCTYPE html><html lang="nl">
 <body>
     <p class="title">Time for snacks!</p>
     <p class="sub-title">Wat leuk dat je mee gaat op snackavontuur!</p>
-    <a href="www.snackify.lameco.nl/order">Breng me naar het snackparadijs</a>
+    <a href="www.snacks.lameco.nl/order">Breng me naar het snackparadijs</a>
 </body>
 </html>`;
