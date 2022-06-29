@@ -1,7 +1,7 @@
 import React from 'react';
 
 type InputProps = {
-  type: string;
+  type?: string;
   label: string;
   placeholder: string;
   margin?: boolean;

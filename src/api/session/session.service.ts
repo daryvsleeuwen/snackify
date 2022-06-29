@@ -30,9 +30,9 @@ export class SessionService {
               snacks: true,
               user: {
                 select: {
-                  profileImage: true
-                }
-              }
+                  profileImage: true,
+                },
+              },
             },
           },
         },
@@ -73,10 +73,10 @@ export class SessionService {
 
       if (!latestSession) return false;
 
-      for(let i = 0; i < latestSession.orders.length; i++){
-        const order = latestSession.orders[i]
+      for (let i = 0; i < latestSession.orders.length; i++) {
+        const order = latestSession.orders[i];
 
-        if(order.userId === user.id){
+        if (order.userId === user.id) {
           return false;
         }
       }
