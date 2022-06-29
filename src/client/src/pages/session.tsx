@@ -11,9 +11,9 @@ const SessionPage = () => {
 
   useEffect(() => {
     axios.get('/session/latest').then((response) => {
-      setLatestSession(response.data);
+      setLatestSession(response.data.session);
 
-      if (!response.data) {
+      if (!response.data.session) {
         axios.get('/user/all').then((response) => {
           if (response.data) {
             setUsers(response.data);

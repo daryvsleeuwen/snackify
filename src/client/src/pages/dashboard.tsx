@@ -8,8 +8,8 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios.get('/session/latest').then((response) => {
-      if (response.data) {
-        setLatestSession(response.data);
+      if (response.data.sessionn) {
+        setLatestSession(response.data.session);
       }
     });
   }, []);

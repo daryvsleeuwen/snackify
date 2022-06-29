@@ -3,15 +3,16 @@ import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { AddOrderDto } from './dto';
 import { SessionService } from './session.service';
-
 @UseGuards(AuthGuard('jwt'))
 @Controller('api/session')
 export class SessionController {
   constructor(private sessionService: SessionService) {}
 
   @Get('/latest')
-  getLatestSession() {
-    return this.sessionService.getLatestSession();
+  getLatestSession(@Req() req: Request) {
+    if (req.user) {
+      return this.sessionService.getLatestSession(req.user);
+    }
   }
 
   @Post('/new')

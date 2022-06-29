@@ -16,16 +16,8 @@ const OrderPage = () => {
 
   useEffect(() => {
     axios.get('/session/latest').then((response) => {
-      if (response.data) {
-        let already_ordered = false;
-
-        response.data.orders.forEach((order) => {
-          if (order.userId === user.sub) {
-            already_ordered = true;
-          }
-        });
-
-        if (!already_ordered) {
+      if (response.data.session) {
+        if (!response.data.alreadyOrdered) {
           axios.get('/snack/all').then((response) => {
             if (response.data) {
               setSnacks(response.data);
@@ -33,8 +25,8 @@ const OrderPage = () => {
           });
         }
 
-        setAlreadyOrdered(already_ordered);
-        setLatestSession(response.data);
+        setAlreadyOrdered(response.data.alreadyOrdered);
+        setLatestSession(response.data.session);
       }
     });
   }, []);
