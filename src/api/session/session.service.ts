@@ -1,24 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { MailerService } from '../mailer/mailer.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { AddOrderDto } from './dto';
 import mailTemplate from './session-mail-template';
-const nodemailer = require('nodemailer');
 @Injectable()
 export class SessionService {
-  transporter = null;
-
-  constructor(private config: ConfigService, private prisma: PrismaService) {
-    this.transporter = nodemailer.createTransport({
-      host: this.config.get('MAILER_HOST'),
-      port: this.config.get('MAILER_PORT'),
-      secure: false,
-      auth: {
-        user: this.config.get('MAILER_USER'),
-        pass: this.config.get('MAILER_PASSWORD'),
-      },
-    });
-  }
+  constructor(private prisma: PrismaService, private mailer: MailerService) {}
 
   async getLatestSession() {
     try {
@@ -54,12 +42,7 @@ export class SessionService {
       const session = await this.prisma.session.create({ data: {} });
       const recipients = selectedUsers.map((user) => user.email);
 
-      await this.transporter.sendMail({
-        from: this.config.get('MAILER_FROM'),
-        bcc: recipients,
-        subject: 'Snackify, plaats je bestelling',
-        html: mailTemplate,
-      });
+      await this.mailer.send('Snackify, plaats je bestelling', recipients, mailTemplate);
 
       return session;
     } catch (error) {
