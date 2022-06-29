@@ -53,7 +53,7 @@ export class SessionService {
       const session = await this.prisma.session.create({ data: {} });
       const recipients = selectedUsers.map((user) => user.email);
 
-      await this.mailer.send('Snackify, plaats je bestelling', recipients, mailTemplate);
+      this.mailer.send('Snackify, plaats je bestelling', recipients, mailTemplate);
 
       return session;
     } catch (error) {
