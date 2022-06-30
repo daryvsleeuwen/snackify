@@ -11,10 +11,16 @@ function App({ Component, pageProps }) {
   const [page, setPage] = useState(null);
 
   useEffect(() => {
-    if (router.pathname !== '/login') {
+    if (router.pathname === '/login') {
+      setPage(<Component {...pageProps} />);
+    } else {
       checkUserAuth(
         (data: any) => {
-          if (router.pathname === '/session' && data.role !== 'ADMIN') window.location.href = '/login';
+          if (router.pathname === '/session' && data.role !== 'ADMIN') {
+            window.location.href = '/login';
+            return;
+          }
+
           setPage(
             <UserContext.Provider value={data}>
               <Component {...pageProps} />
@@ -25,8 +31,6 @@ function App({ Component, pageProps }) {
           window.location.href = '/login';
         },
       );
-    } else {
-      setPage(<Component {...pageProps} />);
     }
   }, []);
 

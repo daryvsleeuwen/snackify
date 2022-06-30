@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { isUndefined } from 'util';
 import { MailerService } from '../mailer/mailer.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { AddOrderDto } from './dto';
@@ -17,7 +16,11 @@ export class SessionService {
         include: {
           orders: {
             include: {
-              snacks: true,
+              snacks: {
+                select: {
+                  snack: true,
+                },
+              },
               user: {
                 select: {
                   profileImage: true,
@@ -44,6 +47,15 @@ export class SessionService {
           }
         }
       }
+
+      session[0].orders.forEach((order, index) => {
+        const snackArray = [];
+        order.snacks.forEach((snackObject) => {
+          snackArray.push(snackObject.snack);
+        });
+
+        session[0].orders[index].snacks = snackArray;
+      });
 
       return { session: session[0], alreadyOrdered: alreadyOrdered };
     } catch (error) {
@@ -74,11 +86,15 @@ export class SessionService {
       if (!session) return false;
       if (alreadyOrdered) return false;
 
+      const snacks = data.snacks.map((snack) => {
+        return { snackId: snack.id };
+      });
+
       const order = await this.prisma.order.create({
         data: {
           userId: user.id,
           snacks: {
-            connect: data.snacks,
+            create: snacks,
           },
           whiteBuns: data.whiteBuns,
           brownBuns: data.brownBuns,

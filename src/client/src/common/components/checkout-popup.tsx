@@ -46,12 +46,8 @@ const CheckoutPopup = () => {
       bun === 'white' ? whiteBuns++ : brownBuns++;
     });
 
-    const snackIds = addedSnacks.map((snack) => {
-      return { id: snack.id };
-    });
-
     const order = {
-      snacks: snackIds,
+      snacks: addedSnacks,
       whiteBuns: whiteBuns,
       brownBuns: brownBuns,
     };

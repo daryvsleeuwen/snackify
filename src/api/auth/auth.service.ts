@@ -68,7 +68,22 @@ export class AuthService {
     };
   }
 
-  async verifyToken(accessToken: string): Promise<boolean> {
+  async isAuth(accessToken: string) {
+    const verified = await this.verifyToken(accessToken);
+
+    const user = await this.prisma.user.findUnique({
+      where: { id: verified.sub },
+    });
+
+    if (user !== null) {
+      delete user.password;
+      return user;
+    }
+
+    return false;
+  }
+
+  async verifyToken(accessToken: string) {
     try {
       const user = await this.jwtService.verify(accessToken, { secret: this.config.get('JWT_SECRET') });
 
