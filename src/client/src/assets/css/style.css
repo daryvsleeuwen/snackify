@@ -594,6 +594,37 @@ button {
   user-select: none;
 }
 
+.loader--fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loader__loading {
+  border: 7px solid #DFE0DD;
+  border-top: 7px solid #D6265C;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: loading 1600ms linear infinite;
+  animation: loading 1600ms linear infinite;
+}
+.loader__text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
 body {
   display: block !important;
   width: 100vw;

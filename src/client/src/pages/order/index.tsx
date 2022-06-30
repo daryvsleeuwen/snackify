@@ -1,35 +1,18 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import axios from '../../common/api/axios';
+import React, { useState, createContext, useContext } from 'react';
+import useFetch from '../../common/hooks/useFetch';
 import Header from '../../common/components/header';
 import SnackOrderBox from '../../common/components/snack-order-box';
 import { UserContext } from '../_app';
+import Loader from '../../common/components/loader';
 
 export const OrderContext = createContext(null);
 
 const OrderPage = () => {
-  const [snacks, setSnacks] = useState([]);
   const [addedSnacks, setAddedSnacks] = useState([]);
   const [addedBuns, setAddedBuns] = useState([]);
-  const [latestSession, setLatestSession] = useState(false);
-  const [alreadyOrdered, setAlreadyOrdered] = useState(false);
+  const { data: latestSession, loading } = useFetch('/session/latest');
+  const { data: snacks } = useFetch('/snack/all');
   const user = useContext(UserContext);
-
-  useEffect(() => {
-    axios.get('/session/latest').then((response) => {
-      if (response.data.session) {
-        if (!response.data.alreadyOrdered) {
-          axios.get('/snack/all').then((response) => {
-            if (response.data) {
-              setSnacks(response.data);
-            }
-          });
-        }
-
-        setAlreadyOrdered(response.data.alreadyOrdered);
-        setLatestSession(response.data.session);
-      }
-    });
-  }, []);
 
   const renderNoSession = () => {
     return (
@@ -54,8 +37,13 @@ const OrderPage = () => {
     );
   };
 
-  if (!latestSession) return renderNoSession();
-  if (alreadyOrdered) return renderAlreadyOrdered();
+  const renderLoading = () => {
+    return <Loader fullscreen={true} text="Aan het laden" />;
+  };
+
+  if (loading) return renderLoading();
+  if (latestSession?.session === null) return renderNoSession();
+  if (latestSession?.alreadyOrdered) return renderAlreadyOrdered();
 
   return (
     <div className="order-page">
@@ -65,7 +53,7 @@ const OrderPage = () => {
         <div className="snack-order-overview grid">
           <p className="section-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>
           <div className="overview-grid">
-            {snacks.map((snack, index) => {
+            {snacks?.map((snack, index) => {
               return <SnackOrderBox key={index} snack={snack} />;
             })}
           </div>

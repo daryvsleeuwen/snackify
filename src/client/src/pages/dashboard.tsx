@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../common/api/axios';
+import React from 'react';
 import Header from '../common/components/header';
 import OrderedItemsRow from '../common/components/ordered-items-row';
+import useFetch from '../common/hooks/useFetch';
 
 const DashboardPage = () => {
-  const [latestSession, setLatestSession] = useState(null);
-
-  useEffect(() => {
-    axios.get('/session/latest').then((response) => {
-      if (response.data.sessionn) {
-        setLatestSession(response.data.session);
-      }
-    });
-  }, []);
+  const { data } = useFetch('/session/latest');
 
   return (
     <div className="dashboard-page">
       <Header title="Dashboard" cart={false} />
-      {!latestSession ? null : (
+      {!data.session ? null : (
         <div className="ordered-items-overview grid">
-          {latestSession.orders.map((order, index) => {
+          {data.session.orders.map((order, index) => {
             return (
               <OrderedItemsRow
                 key={index}

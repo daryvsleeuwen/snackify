@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from '../common/api/axios';
 import Header from '../common/components/header';
 import Button from '../common/components/button';
 import SelectUserBox from '../common/components/select-user-box';
+import Loader from '../common/components/loader';
+import useFetch from '../common/hooks/useFetch';
 
 const SessionPage = () => {
-  const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [latestSession, setLatestSession] = useState(false);
-
-  useEffect(() => {
-    axios.get('/session/latest').then((response) => {
-      setLatestSession(response.data.session);
-
-      if (!response.data.session) {
-        axios.get('/user/all').then((response) => {
-          if (response.data) {
-            setUsers(response.data);
-          }
-        });
-      }
-    });
-  }, []);
+  const { data: latestSession, loading } = useFetch('/session/latest');
+  const { data: users } = useFetch('/user/all');
 
   const createNewSession = () => {
     if (selectedUsers.length > 0) {
@@ -55,9 +43,9 @@ const SessionPage = () => {
     );
   };
 
-  return latestSession ? (
-    renderSessionAlreadyExist()
-  ) : (
+  if (latestSession !== null && latestSession.session !== null) return renderSessionAlreadyExist();
+
+  return (
     <div className="session-page">
       <Header title="Nieuwe sessie aanmaken" cart={false} />
       <div className="select-users-overview grid">
@@ -66,7 +54,7 @@ const SessionPage = () => {
           <Button size="medium" text="Sessie aanmaken" color="red" onClick={createNewSession} />
         </div>
         <div className="select-users__grid">
-          {users.map((user, index) => {
+          {users?.map((user, index) => {
             return <SelectUserBox key={index} user={user} onSelect={selectUser} onDeselect={deselectUser} />;
           })}
         </div>
