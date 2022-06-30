@@ -21,7 +21,7 @@ const OrderFinishPage = () => {
     });
   };
 
-  if (!data?.alreadyOrdered) window.location.href = '/order';
+  if (data !== null && !data.alreadyOrdered) window.location.href = '/order';
   if (data === null) return false;
 
   return (
