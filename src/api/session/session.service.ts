@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { isUndefined } from 'util';
 import { MailerService } from '../mailer/mailer.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { AddOrderDto } from './dto';
@@ -7,7 +8,7 @@ import mailTemplate from './session-mail-template';
 export class SessionService {
   constructor(private prisma: PrismaService, private mailer: MailerService) {}
 
-  async getLatestSession(user: any) {
+  async getLatestSession(user?: any) {
     try {
       const execption = { session: null, alreadyOrdered: false };
 
@@ -34,11 +35,13 @@ export class SessionService {
 
       let alreadyOrdered = false;
 
-      for (let i = 0; i < session[0].orders.length; i++) {
-        const order = session[0].orders[i];
+      if (user !== undefined && user !== null) {
+        for (let i = 0; i < session[0].orders.length; i++) {
+          const order = session[0].orders[i];
 
-        if (order.userId === user.id) {
-          alreadyOrdered = true;
+          if (order.userId === user.id) {
+            alreadyOrdered = true;
+          }
         }
       }
 
@@ -50,12 +53,15 @@ export class SessionService {
 
   async createSession(selectedUsers: any[]) {
     try {
-      const session = await this.prisma.session.create({ data: {} });
+      const { session: latestSession } = await this.getLatestSession();
+      if (latestSession !== null) return false;
+
+      const newSession = await this.prisma.session.create({ data: {} });
       const recipients = selectedUsers.map((user) => user.email);
 
       this.mailer.send('Snackify, plaats je bestelling', recipients, mailTemplate);
 
-      return session;
+      return newSession;
     } catch (error) {
       throw error;
     }
