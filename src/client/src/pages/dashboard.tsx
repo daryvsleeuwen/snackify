@@ -9,21 +9,20 @@ const DashboardPage = () => {
   return (
     <div className="dashboard-page">
       <Header title="Dashboard" cart={false} />
-      {!data.session ? null : (
-        <div className="ordered-items-overview grid">
-          {data.session.orders.map((order, index) => {
-            return (
-              <OrderedItemsRow
-                key={index}
-                userProfileImage={order.user.profileImage}
-                snacks={order.snacks}
-                whiteBuns={order.whiteBuns}
-                brownBuns={order.brownBuns}
-              />
-            );
-          })}
-        </div>
-      )}
+
+      <div className="ordered-items-overview grid">
+        {data?.session?.orders.map((order, index) => {
+          return (
+            <OrderedItemsRow
+              key={index}
+              userProfileImage={order.user.profileImage}
+              snacks={order.snacks}
+              whiteBuns={order.whiteBuns}
+              brownBuns={order.brownBuns}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
