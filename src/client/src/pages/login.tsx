@@ -9,7 +9,9 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const tryLogin = async () => {
+  const tryLogin = async (event) => {
+    event.preventDefault();
+
     if (email !== '' && password !== '') {
       const formData = { email: email, password: password };
       const data = await axios.post('/auth/signin', formData);
@@ -37,10 +39,12 @@ const LoginPage = () => {
       <div className="login-box">
         <p className="login__title">Inloggen</p>
         <p className="login__subtitle">Welkom beste snackbaas!</p>
-        <Input label='Email' placeholder='v.achternaam@lameco.nl' margin={true} onChange={setEmail} />
-        <Input type='password' label='Wachtwoord' placeholder='Voer je wachtwoord in' onChange={setPassword} />
-        <p className="login__forgot-password">Wachtwoord vergeten?</p>
-        <Button color="black" size="medium" text="Inloggen" fill={true} onClick={tryLogin} />
+        <form onSubmit={tryLogin}>
+          <Input label="Email" placeholder="v.achternaam@lameco.nl" margin={true} onChange={setEmail} />
+          <Input type="password" label="Wachtwoord" placeholder="Voer je wachtwoord in" onChange={setPassword} />
+          <p className="login__forgot-password">Wachtwoord vergeten?</p>
+          <Button color="black" size="medium" text="Inloggen" type="submit" fill={true} onClick={tryLogin} />
+        </form>
       </div>
     </div>
   );

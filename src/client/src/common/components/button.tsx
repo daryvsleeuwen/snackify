@@ -4,6 +4,7 @@ type ButtonProps = {
   size: string;
   color: string;
   text: string;
+  type?: string;
   fill?: boolean;
   onClick: () => void;
 };
@@ -11,6 +12,7 @@ type ButtonProps = {
 const Button = (props: ButtonProps) => {
   return (
     <button
+      type={props.type !== null ? props.type : 'text'}
       className={`button button--${props.size} button--${props.color}${props.fill ? ' button--flex' : ''}`}
       onClick={props.onClick}
     >
