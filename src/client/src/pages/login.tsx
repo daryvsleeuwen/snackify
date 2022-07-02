@@ -43,7 +43,7 @@ const LoginPage = () => {
           <Input label="Email" placeholder="v.achternaam@lameco.nl" margin={true} onChange={setEmail} />
           <Input type="password" label="Wachtwoord" placeholder="Voer je wachtwoord in" onChange={setPassword} />
           <p className="login__forgot-password">Wachtwoord vergeten?</p>
-          <Button color="black" size="medium" text="Inloggen" type="submit" fill={true} onClick={tryLogin} />
+          <Button color="black" size="medium" text="Inloggen" type="submit" fill={true} />
         </form>
       </div>
     </div>
