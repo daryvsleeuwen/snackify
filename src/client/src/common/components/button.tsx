@@ -4,15 +4,15 @@ type ButtonProps = {
   size: string;
   color: string;
   text: string;
-  type?: string;
+  type?: 'submit' | 'button';
   fill?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Button = (props: ButtonProps) => {
   return (
     <button
-      type={props.type !== null ? props.type : 'text'}
+      type={props.type !== undefined ? props.type : 'button'}
       className={`button button--${props.size} button--${props.color}${props.fill ? ' button--flex' : ''}`}
       onClick={props.onClick}
     >
