@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 type OrderAmountControllerProps = {
   type: string;
-  max?: number;
+  disabled: boolean;
   data: any;
   onDecrement: (value: any) => void;
   onIncrement: (value: any) => void;
@@ -20,12 +20,7 @@ const OrderAmountController = (props: OrderAmountControllerProps) => {
   };
 
   const increment = () => {
-    if (typeof props.max === 'number') {
-      if (!(props.data.length + 1 > props.max)) {
-        setAmount(amount + 1);
-        props.onIncrement(props.callbackValue);
-      }
-    } else {
+    if (!props.disabled) {
       setAmount(amount + 1);
       props.onIncrement(props.callbackValue);
     }
@@ -39,7 +34,7 @@ const OrderAmountController = (props: OrderAmountControllerProps) => {
       <div className="order-amount-controller__amount">{amount}</div>
       <div
         className={`order-amount-controller__incrementer${
-          props.data.length == props.max ? ' order-amount-controller__incrementer--disabled' : ''
+          props.disabled ? ' order-amount-controller__incrementer--disabled' : ''
         }`}
         onClick={increment}
       >

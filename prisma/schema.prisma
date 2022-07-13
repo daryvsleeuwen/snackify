@@ -67,6 +67,7 @@ model SnackToOrder {
   id        Int      @id @default(autoincrement())
   snack   Snack @relation(fields: [snackId], references: [id])
   snackId Int
+  amount  Int
 
   order   Order? @relation(fields: [orderId], references: [id])
   orderId Int?

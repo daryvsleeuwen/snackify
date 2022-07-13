@@ -18,8 +18,6 @@ export class JwtAdminStrategy extends PassportStrategy(Strategy, 'jwt-admin') {
       where: { id: payload.sub },
     });
 
-    console.log(user);
-
     if (user === null) return false;
     if (user.role !== 'ADMIN') return false;
 

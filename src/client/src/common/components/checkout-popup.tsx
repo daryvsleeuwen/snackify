@@ -67,7 +67,7 @@ const CheckoutPopup = () => {
         return (
           <div key={index} className="checkout-popup__order-row">
             <img src={snack.image} />
-            <p className="checkout-popup__amount">1x</p>
+            <p className="checkout-popup__amount">{snack.amount}x</p>
           </div>
         );
       })}
@@ -78,6 +78,7 @@ const CheckoutPopup = () => {
         {/* <Image src="/images/white-bun.png" width={70} height={70} layout="responsive" /> */}
         <OrderAmountController
           type="small"
+          disabled={false}
           data={addedBuns}
           onDecrement={removeBun}
           onIncrement={addBun}
@@ -89,6 +90,7 @@ const CheckoutPopup = () => {
         {/* <Image src="/images/white-bun.png" width={70} height={70} layout="responsive" /> */}
         <OrderAmountController
           type="small"
+          disabled={false}
           data={addedBuns}
           onDecrement={removeBun}
           onIncrement={addBun}

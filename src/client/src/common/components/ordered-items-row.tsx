@@ -24,7 +24,7 @@ const OrderedItemsRow = (props: OrderedItemsRowProps) => {
             {props.snacks.map((snack, index) => {
               return (
                 <div key={index} className="ordered-items-row__amounts--flex">
-                  <span>1x</span>
+                  <span>{snack.amount}x</span>
                   <img src={snack.image} />
                 </div>
               );

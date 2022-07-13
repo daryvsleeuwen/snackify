@@ -9,6 +9,7 @@ export const OrderContext = createContext(null);
 
 const OrderPage = () => {
   const [addedSnacks, setAddedSnacks] = useState([]);
+  const [totalSnacks, setTotalSnacks] = useState(0);
   const [addedBuns, setAddedBuns] = useState([]);
   const { data: latestSession, loading } = useFetch('/session/latest');
   const { data: snacks } = useFetch('/snack/all');
@@ -47,7 +48,9 @@ const OrderPage = () => {
 
   return (
     <div className="order-page">
-      <OrderContext.Provider value={{ addedSnacks, setAddedSnacks, addedBuns, setAddedBuns }}>
+      <OrderContext.Provider
+        value={{ addedSnacks, setAddedSnacks, totalSnacks, setTotalSnacks, addedBuns, setAddedBuns }}
+      >
         <Header title="Laat het snackavontuur beginnen" cart={true} />
 
         <div className="snack-order-overview grid">

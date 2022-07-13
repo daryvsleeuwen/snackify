@@ -19,6 +19,7 @@ export class SessionService {
               snacks: {
                 select: {
                   snack: true,
+                  amount: true,
                 },
               },
               user: {
@@ -51,7 +52,7 @@ export class SessionService {
       session[0].orders.forEach((order, index) => {
         const snackArray = [];
         order.snacks.forEach((snackObject) => {
-          snackArray.push(snackObject.snack);
+          snackArray.push({ ...snackObject.snack, amount: snackObject.amount });
         });
 
         session[0].orders[index].snacks = snackArray;
@@ -87,7 +88,7 @@ export class SessionService {
       if (alreadyOrdered) return false;
 
       const snacks = data.snacks.map((snack) => {
-        return { snackId: snack.id };
+        return { snackId: snack.id, amount: snack.amount };
       });
 
       const order = await this.prisma.order.create({
