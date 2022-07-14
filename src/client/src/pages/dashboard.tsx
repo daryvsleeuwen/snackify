@@ -76,7 +76,7 @@ const DashboardPage = () => {
     }
   };
 
-  const renderaccumulatedItems = () => {
+  const renderAccumulatedItems = () => {
     if (data.session?.orders.length > 0) {
       return (
         <div className="accumulated-orders-overview">
@@ -115,7 +115,7 @@ const DashboardPage = () => {
       {renderSectionTitle()}
       <div className="ordered-items-overview grid">
         <div className="ordered-items-rows">{renderOrderedItemsRows()}</div>
-        {renderaccumulatedItems()}
+        {renderAccumulatedItems()}
       </div>
     </div>
   );
