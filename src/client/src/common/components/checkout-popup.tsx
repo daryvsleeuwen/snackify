@@ -54,7 +54,9 @@ const CheckoutPopup = () => {
 
     axios.post('/session/addorder', order).then((response) => {
       if (response.data) {
-        window.location.href = '/order/finish';
+        if (!response.data.error) {
+          window.location.href = '/order/finish';
+        }
       }
     });
   };

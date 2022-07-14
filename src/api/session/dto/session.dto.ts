@@ -1,5 +1,9 @@
 import { IsArray, IsInt, IsNotEmpty } from 'class-validator';
 
+type SnackObject = {
+  id: number;
+  amount: number;
+};
 export class AddOrderDto {
   @IsInt()
   @IsNotEmpty()
@@ -11,5 +15,5 @@ export class AddOrderDto {
 
   @IsNotEmpty()
   @IsArray()
-  snacks: any[];
+  snacks: SnackObject[];
 }

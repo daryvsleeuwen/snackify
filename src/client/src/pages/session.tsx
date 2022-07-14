@@ -3,7 +3,6 @@ import axios from '../common/api/axios';
 import Header from '../common/components/header';
 import Button from '../common/components/button';
 import SelectUserBox from '../common/components/select-user-box';
-import Loader from '../common/components/loader';
 import useFetch from '../common/hooks/useFetch';
 
 const SessionPage = () => {
@@ -43,12 +42,13 @@ const SessionPage = () => {
     );
   };
 
-  if (latestSession !== null && latestSession.session !== null) return renderSessionAlreadyExist();
+  if (loading) return false;
+  if (latestSession?.session !== null && !latestSession?.expired) return renderSessionAlreadyExist();
 
   return (
     <div className="session-page">
       <Header title="Nieuwe sessie aanmaken" cart={false} />
-      <div className="select-users-overview grid">
+      <div className="select-users-overview grid section">
         <div className="select-users__top">
           <p className="section-title">Selecteer welke medewerkers op kantoor zijn</p>
           <Button size="medium" text="Sessie aanmaken" color="red" onClick={createNewSession} />

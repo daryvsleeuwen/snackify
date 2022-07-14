@@ -9,8 +9,6 @@ export class SessionService {
 
   async getLatestSession(user?: any) {
     try {
-      const execption = { session: null, alreadyOrdered: false };
-
       const session = await this.prisma.session.findMany({
         take: -1,
         include: {
@@ -32,25 +30,33 @@ export class SessionService {
         },
       });
 
-      if (session.length <= 0) return execption;
+      const sessionData = { session: null, alreadyOrdered: false, expired: false, epoch: null };
+
+      if (session.length <= 0) {
+        return sessionData;
+      } else {
+        sessionData.session = session[0];
+      }
 
       const epoch = session[0].createdAt.getTime();
-      if (epoch + 1_800_000 < Date.now()) return execption;
+      if (epoch + 1_800_000 < Date.now()) sessionData.expired = true;
 
-      let alreadyOrdered = false;
+      sessionData.epoch = epoch;
 
       if (user !== undefined && user !== null) {
         for (let i = 0; i < session[0].orders.length; i++) {
           const order = session[0].orders[i];
 
           if (order.userId === user.id) {
-            alreadyOrdered = true;
+            sessionData.alreadyOrdered = true;
+            break;
           }
         }
       }
 
       session[0].orders.forEach((order, index) => {
         const snackArray = [];
+
         order.snacks.forEach((snackObject) => {
           snackArray.push({ ...snackObject.snack, amount: snackObject.amount });
         });
@@ -58,7 +64,7 @@ export class SessionService {
         session[0].orders[index].snacks = snackArray;
       });
 
-      return { session: session[0], alreadyOrdered: alreadyOrdered };
+      return sessionData;
     } catch (error) {
       throw error;
     }
@@ -66,8 +72,8 @@ export class SessionService {
 
   async createSession(selectedUsers: any[]) {
     try {
-      const { session: latestSession } = await this.getLatestSession();
-      if (latestSession !== null) return false;
+      const { session: latestSession, expired } = await this.getLatestSession();
+      if (latestSession !== null && !expired) return false;
 
       const newSession = await this.prisma.session.create({ data: {} });
       const recipients = selectedUsers.map((user) => user.email);
@@ -82,9 +88,9 @@ export class SessionService {
 
   async addOrder(data: AddOrderDto, user: any) {
     try {
-      const { session, alreadyOrdered } = await this.getLatestSession(user.id);
+      const { session, alreadyOrdered, expired } = await this.getLatestSession(user.id);
 
-      if (!session) return false;
+      if (expired) return { error: 'De sessie is helaas al verlopen' };
       if (alreadyOrdered) return false;
 
       const snacks = data.snacks.map((snack) => {
@@ -102,6 +108,7 @@ export class SessionService {
           sessionId: session.id,
         },
       });
+      console.log(order);
 
       return order;
     } catch (error) {

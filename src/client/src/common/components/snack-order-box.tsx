@@ -64,7 +64,9 @@ const SnackOrderBox = (props: SnackOrderBoxProps) => {
   return (
     <div className="snack-order-box">
       <div className="snack-order-box__image">
-        <img src={props.snack.image} />
+        <div className="snack-order-box__image__centerer">
+          <img src={props.snack.image} />
+        </div>
       </div>
       <div className="snack-order-box__order-controls">
         <p className="snack-order-box__snack-title">{props.snack.name}</p>

@@ -1,5 +1,59 @@
 .dashboard-page{
+    .section-title{
+        margin-bottom: 80px;
+    }
+
     .ordered-items-overview{
-        margin: 150px auto;
+        display: flex;
+    }
+
+    .ordered-items-rows{
+        flex: 1;
+    }
+
+    .ordered-items-row{
+        margin-bottom: 60px;
+    }
+
+    .no-ordered-items-message{
+        font-size: 22px;
+
+    }
+
+    .accumulated-orders-overview{
+        border-radius: $border-radius-lg;
+        border: 2px solid $faded-red;
+        width: 300px;
+        height: fit-content;
+        padding: 25px 30px;
+        margin-top: 37px;
+
+        .accumulated{
+            &__title{
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            &__flex{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &__amounts{
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+
+
+                p{
+                    margin-right: 20px;
+                }
+
+                img{
+                    width: auto;
+                    height: 30px;
+                }
+            }
+        }
     }
 }

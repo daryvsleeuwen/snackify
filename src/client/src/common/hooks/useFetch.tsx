@@ -4,12 +4,10 @@ import axios from '../api/axios';
 
 const useFetch = (url: string) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-
     axios
       .get(url)
       .then((response) => {

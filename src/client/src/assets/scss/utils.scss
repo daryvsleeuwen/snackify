@@ -1,5 +1,5 @@
 .grid{
-    width: 1300px;
+    width: 1435px;
     max-width: 90vw;
     margin-left: auto;
     margin-right: auto;
@@ -111,6 +111,10 @@ button{
     &--lg{
         border-radius: 12px;
     }
+}
+
+.section{
+    margin: 150px auto;
 }
 
 .title{

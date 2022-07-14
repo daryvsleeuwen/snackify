@@ -38,11 +38,7 @@ const OrderPage = () => {
     );
   };
 
-  const renderLoading = () => {
-    return <Loader fullscreen={true} text="Aan het laden" />;
-  };
-
-  if (loading) return renderLoading();
+  if (loading) return <Loader fullscreen={true} text="Aan het laden" />;
   if (latestSession?.session === null) return renderNoSession();
   if (latestSession?.alreadyOrdered) return renderAlreadyOrdered();
 
@@ -52,8 +48,7 @@ const OrderPage = () => {
         value={{ addedSnacks, setAddedSnacks, totalSnacks, setTotalSnacks, addedBuns, setAddedBuns }}
       >
         <Header title="Laat het snackavontuur beginnen" cart={true} />
-
-        <div className="snack-order-overview grid">
+        <div className="snack-order-overview grid section">
           <p className="section-title grid">Tijd om te bestellen {user.name.split(' ')[0]}</p>
           <div className="overview-grid">
             {snacks?.map((snack, index) => {
