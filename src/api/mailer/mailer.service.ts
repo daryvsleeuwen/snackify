@@ -20,7 +20,7 @@ export class MailerService {
 
   async send(subject: string, recipients: string[], template: string) {
     await this.transporter.sendMail({
-      from: this.config.get('MAILER_FROM'),
+      from: this.config.get('MAILER_USER'),
       bcc: recipients,
       subject: subject,
       html: template,
