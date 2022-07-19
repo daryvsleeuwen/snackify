@@ -108,7 +108,6 @@ export class SessionService {
           sessionId: session.id,
         },
       });
-      console.log(order);
 
       return order;
     } catch (error) {
