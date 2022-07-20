@@ -13,6 +13,7 @@ const DashboardPage = () => {
   useEffect(() => {
     if (data === null) return;
     if (data.session === null) return;
+    if (data.epoch + 7_200_000 < Date.now()) window.location.href = '/session'
 
     accumulateOrderedItems();
   }, [data]);
