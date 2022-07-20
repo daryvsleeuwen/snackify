@@ -7,7 +7,7 @@ const useFetch = (url: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const fetch = () => {
     axios
       .get(url)
       .then((response) => {
@@ -18,9 +18,17 @@ const useFetch = (url: string) => {
         setLoading(false);
         setError(error);
       });
+  };
+  useEffect(() => {
+    fetch();
   }, [url]);
 
-  return { data, loading, error };
+  const refetch = () => {
+    setLoading(true);
+    fetch();
+  };
+
+  return { data, loading, error, refetch };
 };
 
 export default useFetch;

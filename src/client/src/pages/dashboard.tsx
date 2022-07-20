@@ -5,17 +5,32 @@ import RemainingTimer from '../common/components/remaining-timer';
 import useFetch from '../common/hooks/useFetch';
 
 const DashboardPage = () => {
-  const { data, loading } = useFetch('/session/latest');
+  const { data, loading, refetch: refetchLatestSession } = useFetch('/session/latest');
   const [accumulatedSnacks, setAccumulatedSnacks] = useState([]);
   const [whiteBunsAmount, setWhiteBunsAmount] = useState(0);
   const [brownBunsAmount, setBrownBunsAmount] = useState(0);
+  const [expired, setExpired] = useState(false);
 
   useEffect(() => {
     if (data === null) return;
     if (data.session === null) return;
-    if (data.epoch + 7_200_000 < Date.now()) window.location.href = '/session'
+    if (data.epoch + 7_200_000 < Date.now()) window.location.href = '/session';
+
+    setExpired(data.expired);
+
+    let reFetcher = null;
+
+    if (!data.expired) {
+      reFetcher = setInterval(() => {
+        refetchLatestSession();
+      }, 4000);
+    }
 
     accumulateOrderedItems();
+
+    return () => {
+      clearInterval(reFetcher);
+    };
   }, [data]);
 
   const accumulateOrderedItems = () => {
@@ -52,11 +67,18 @@ const DashboardPage = () => {
   };
 
   const renderSectionTitle = () => {
-    if (data.expired || data.session === null) {
+    if (expired || data.session === null) {
       return <p className="section-title grid">De huidige sessie is verlopen. Bekijk hier alle bestellingen</p>;
     }
 
-    return <RemainingTimer epoch={data?.epoch} />;
+    return (
+      <RemainingTimer
+        epoch={data?.epoch}
+        onExpire={() => {
+          setExpired(true);
+        }}
+      />
+    );
   };
 
   const renderOrderedItemsRows = () => {
