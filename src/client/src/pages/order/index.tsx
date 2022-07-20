@@ -39,8 +39,9 @@ const OrderPage = () => {
   };
 
   if (loading) return <Loader fullscreen={true} text="Aan het laden" />;
-  if (latestSession?.session === null) return renderNoSession();
-  if (latestSession?.alreadyOrdered) return renderAlreadyOrdered();
+  if (latestSession.session === null) return renderNoSession();
+  if (latestSession.expired) return renderNoSession();
+  if (latestSession.alreadyOrdered) return renderAlreadyOrdered();
 
   return (
     <div className="order-page">

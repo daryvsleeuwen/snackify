@@ -7,6 +7,7 @@ import { SnackModule } from './api/snack/snack.module';
 import { SessionModule } from './api/session/session.module';
 import { ViewModule } from './api/view/view.module';
 import { MailerModule } from './api/mailer/mailer.module';
+import { StatisticsModule } from './api/statistics/statistics.module';
 
 @Module({
   imports: [
@@ -16,8 +17,9 @@ import { MailerModule } from './api/mailer/mailer.module';
     UserModule,
     SnackModule,
     SessionModule,
-    ViewModule,
     MailerModule,
+    StatisticsModule,
+    ViewModule,
   ],
   controllers: [],
   providers: [],
