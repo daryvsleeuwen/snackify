@@ -1,26 +1,26 @@
-.dashboard-page{
-    .section-title{
+.dashboard-page {
+    .section-title {
         margin-bottom: 80px;
     }
 
-    .ordered-items-overview{
+    .ordered-items-overview {
         display: flex;
     }
 
-    .ordered-items-rows{
+    .ordered-items-rows {
         flex: 1;
     }
 
-    .ordered-items-row{
+    .ordered-items-row {
         margin-bottom: 60px;
     }
 
-    .no-ordered-items-message{
+    .no-ordered-items-message {
         font-size: 22px;
 
     }
 
-    .accumulated-orders-overview{
+    .accumulated-orders-overview {
         border-radius: $border-radius-lg;
         border: 2px solid $faded-red;
         width: 300px;
@@ -28,32 +28,42 @@
         padding: 25px 30px;
         margin-top: 37px;
 
-        .accumulated{
-            &__title{
+        .accumulated {
+            &__title {
                 font-size: 20px;
                 margin-bottom: 30px;
             }
 
-            &__flex{
+            &__flex {
                 display: flex;
                 justify-content: space-between;
             }
 
-            &__amounts{
+            &__amounts {
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
 
-
-                p{
+                p {
                     margin-right: 20px;
                 }
 
-                img{
+                img {
                     width: auto;
                     height: 30px;
                 }
             }
+        }
+    }
+
+    @media (max-width: 1050px) {
+        .ordered-items-overview {
+            flex-direction: column-reverse;
+        }
+
+        .accumulated-orders-overview {
+            margin-bottom: 60px;
+            margin-top: 0;
         }
     }
 }

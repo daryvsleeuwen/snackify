@@ -267,6 +267,15 @@ button {
   width: auto;
   height: 30px;
 }
+@media (max-width: 1050px) {
+  .dashboard-page .ordered-items-overview {
+    flex-direction: column-reverse;
+  }
+  .dashboard-page .accumulated-orders-overview {
+    margin-bottom: 60px;
+    margin-top: 0;
+  }
+}
 
 .session-page .select-users-overview .section-title {
   margin-bottom: 0;
@@ -570,6 +579,28 @@ button {
 .ordered-items-row__amounts--flex img {
   width: auto;
   height: 44px;
+}
+@media (max-width: 1280px) {
+  .ordered-items-row__background {
+    grid-template-columns: auto auto;
+    height: 80px;
+    padding: 0 15px 0 90px;
+  }
+  .ordered-items-row__titles-grid {
+    grid-template-columns: auto auto;
+  }
+  .ordered-items-row__amounts--flex {
+    margin-right: 15px;
+  }
+  .ordered-items-row__amounts--flex img {
+    width: auto;
+    height: 34px;
+  }
+}
+@media (max-width: 1050px) {
+  .ordered-items-row {
+    margin-right: 0;
+  }
 }
 
 .select-user-box {

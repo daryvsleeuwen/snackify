@@ -1,13 +1,13 @@
-.ordered-items-row{
+.ordered-items-row {
     margin-right: 60px;
 
-    &__bottom{
+    &__bottom {
         position: relative;
         display: flex;
         flex: 1;
     }
 
-    &__titles-grid{
+    &__titles-grid {
         margin-left: 170px;
         margin-bottom: 10px;
         display: grid;
@@ -16,7 +16,7 @@
         font-weight: 600;
     }
 
-    &__background{
+    &__background {
         display: grid;
         grid-template-columns: 370px auto;
         width: calc(100% - 60px);
@@ -27,7 +27,7 @@
         box-shadow: $boxshadow;
     }
 
-    &__profile{
+    &__profile {
         position: absolute;
         left: 0;
         top: 50%;
@@ -37,32 +37,59 @@
         border-radius: 200px;
         overflow: hidden;
 
-        img{
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
 
-    &__amounts{
+    &__amounts {
         display: flex;
         align-items: center;
 
-        &--flex{
+        &--flex {
             display: flex;
             align-items: center;
             margin-right: 30px;
-        
-            span{
+
+            span {
                 margin-right: 15px;
                 font-weight: 400;
                 font-size: 18px;
             }
-    
-            img{
+
+            img {
                 width: auto;
                 height: 44px;
             }
         }
+    }
+
+    @media (max-width: 1280px) {
+        &__background {
+            grid-template-columns: auto auto;
+            height: 80px;
+            padding: 0 15px 0 90px;
+        }
+
+        &__titles-grid{
+            grid-template-columns: auto auto;
+        }
+
+        &__amounts {
+            &--flex {
+                margin-right: 15px;
+
+                img {
+                    width: auto;
+                    height: 34px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1050px){
+        margin-right: 0;
     }
 }
