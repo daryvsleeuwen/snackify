@@ -76,9 +76,10 @@ export class SessionService {
       if (latestSession !== null && !expired) return false;
 
       const newSession = await this.prisma.session.create({ data: {} });
-      const recipients = selectedUsers.map((user) => user.email);
 
-      this.mailer.send('Snackify, plaats je bestelling', recipients, mailTemplate);
+      selectedUsers.forEach((user) => {
+        this.mailer.send('Snackify, plaats je bestelling', user.email, mailTemplate);
+      });
 
       return newSession;
     } catch (error) {

@@ -11,18 +11,21 @@ export class MailerService {
       host: this.config.get('MAILER_HOST'),
       port: this.config.get('MAILER_PORT'),
       secure: false,
+      requireTLS: true,
       auth: {
         user: this.config.get('MAILER_USER'),
         pass: this.config.get('MAILER_PASSWORD'),
       },
+      from: this.config.get('MAILER_USER'),
     });
   }
 
-  async send(subject: string, recipients: string[], template: string) {
+  async send(subject: string, to: string, template: string) {
     await this.transporter.sendMail({
-      from: this.config.get('MAILER_USER'),
-      bcc: recipients,
+      from: `Snackify <${this.config.get('MAILER_USER')}>`,
+      to: to,
       subject: subject,
+      text: subject,
       html: template,
     });
   }
